@@ -66,15 +66,24 @@ function Page() {
         </div>
 
            <h2
-          className={`mt-30 mb-10 text-center text-4xl text-white p-2 bg-green-700 md:text-5xl  drop-shadow-lg`}
+          className={`mt-30 mb-10 text-center text-3xl text-white p-2 bg-green-700 md:text-5xl  drop-shadow-lg`}
           style={{fontFamily:"Minecraft"}}
         >
         
-       Website Developed by
+     Design and Developed by
         </h2>
         <div className="flex mb-20 flex-wrap justify-center gap-4 p-6">
         
-            <div
+           
+        <div
+              key={"33"}
+              className="w-80 h-96 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl overflow-hidden shadow-lg"
+            >
+              <div className="relative w-full h-full">
+                <Image src={"/semicore/33.png"} alt={"Muchkundraje thote"} fill className="object-cover" />
+              </div>
+            </div>
+             <div
               key={"32"}
               className="w-80 h-96 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl overflow-hidden shadow-lg"
             >
@@ -82,12 +91,13 @@ function Page() {
                 <Image src={"/semicore/32.png"} alt={"Muchkundraje thote"} fill className="object-cover" />
               </div>
             </div>
-        <div
+            
+               <div
               key={"33"}
               className="w-80 h-96 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl overflow-hidden shadow-lg"
             >
               <div className="relative w-full h-full">
-                <Image src={"/semicore/33.png"} alt={"Muchkundraje thote"} fill className="object-cover" />
+                <Image src={"/core/19.png"} alt={"Muchkundraje thote"} fill className="object-cover" />
               </div>
             </div>
 

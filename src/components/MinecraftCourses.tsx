@@ -99,7 +99,7 @@ const MISSIONS = [
     category: "Competition",
     group: "Sports",
     title: "Chess",
-    subtitle: "Battle of the Coders",
+    subtitle: "Battle of the Masterminds",
     icon: "⚔️",
     fee: "₹150",
     mode: "Offline",
