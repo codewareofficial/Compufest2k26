@@ -87,7 +87,7 @@ export default function UseTimeline() {
       difficulty: 'Easy',
       description: 'Free Fire is an action-packed battle royale where players compete for survival and victory. Fight smart, survive longer, and be the last one standing!',
       prizePool: '₹2,200',
-      imag: "https://i.pinimg.com/736x/6e/61/a0/6e61a09f6e8c673ad1a1e0c2781922b1.jpg",
+      imag: "https://i.pinimg.com/736x/40/8f/58/408f584978ae580e38c4b642c2330502.jpg",
     },
     { 
       id: 9, 
@@ -98,7 +98,7 @@ export default function UseTimeline() {
       difficulty: 'Hard',
       description: 'BGMI is an intense battle royale where players compete with strategy, teamwork, and skill. Gear up, fight smart, and be the last team standing!',
       prizePool: '₹2,200',
-      imag:"https://i.pinimg.com/736x/e4/a8/1e/e4a81e06f9be9934de83e441de328ec0.jpg"
+      imag:"https://i.pinimg.com/736x/9f/a8/09/9fa809fec69c4a3d4f2b9f6562f5d96b.jpg"
     }
    
   ];
@@ -111,6 +111,67 @@ export default function UseTimeline() {
 
   return (
     <>
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-slow-marquee { animation: marquee 20s linear infinite; }
+      `}</style>
+      
+      {/* Header / Video Section */}
+      <div className='h-40 flex w-full relative'>
+        
+        <div className='h-40 w-96'>
+          <img src="./23.png" className="object-cover h-full w-full"></img>
+        </div>
+
+         <div className='h-40 w-96 '>
+          <img src="./21.png" className="object-cover   h-full w-full"></img>
+        </div>
+         
+         <div className='h-40 w-96 '>
+          <img src="./21.png" className="object-cover   h-full w-full"></img>
+        </div>
+          
+          <div className='h-40 w-96 '>
+          <img src="./22.png" className="object-cover   h-full w-full"></img>
+        </div> 
+        
+        
+          {/* <SpriteSheetAnimator
+            src="\spritesheet.png"
+            frameWidth={35}
+            frameHeight={56}
+            frameCount={8}
+            columns={8}
+            fps={1}
+            loop={true}
+            scale={2}
+            frameOffsets={playerOffsets}
+            className='mt-10 absolute '
+            onComplete={undefined}/> */}
+            
+    
+            {/* <div className='h-40 w-72'>
+          <img src="./1.png" className="object-cover h-full w-full"></img>
+        </div>
+            <div className='h-40 w-72'>
+          <img src="./1.png" className="object-cover h-full w-full"></img>
+        </div>
+           <div className='h-40 w-72'>
+          <img src="./1.png" className="object-cover h-full w-full"></img>
+        </div>
+           <div className='h-40 w-72'>
+          <img src="./1.png" className="object-cover h-full w-full"></img>
+        </div>
+             <div className='h-40 w-72'>
+          <img src="./1.png" className="object-cover h-full w-full"></img>
+        </div> */}
+      </div>
+
+      {/* Marquee Section */}
+     
 
       <div id='highlights' className="w-full h-12 bg-green-600 border-t-4 border-green-800 overflow-hidden flex items-end">
        <div className="flex animate-slow-marquee whitespace-nowrap gap-4 px-4">

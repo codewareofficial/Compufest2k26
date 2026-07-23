@@ -103,6 +103,16 @@ function EventLanding() {
 
 
       </div>
+       <div className="w-full h-12 bg-green-600 border-t-4 border-green-800 overflow-hidden flex items-end">
+        <div className="flex animate-slow-marquee whitespace-nowrap gap-4 px-4">
+          {[...Array(40)].map((_, i) => (
+            <div key={i} className="w-8 h-8 bg-green-500 mb-2 opacity-50 flex-shrink-0"></div>
+          ))}
+          {[...Array(40)].map((_, i) => (
+            <div key={`copy-${i}`} className="w-8 h-8 bg-green-500 mb-2 opacity-50 flex-shrink-0"></div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
