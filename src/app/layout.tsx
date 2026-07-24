@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import MinecraftLoader from "@/components/Minecraftloader";
+import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Nav />
         {children}
         </MinecraftLoader>
+        <Analytics />
       </body>
     </html>
   );
