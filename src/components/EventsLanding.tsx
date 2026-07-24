@@ -91,7 +91,8 @@ function EventLanding() {
 
       {/* Events Section: Fixed to cover the screen */}
       <div 
-        className='w-full min-h-screen bg-red-100 bg-cover bg-center py-10' 
+        id="events"
+        className='w-full min-h-screen bg-red-100 bg-cover bg-center py-10 scroll-mt-16' 
         style={{ backgroundImage: "url('/bg-dirt.png')" }}
       >
         <h1 className='text-5xl text-white text-center mb-10' style={{fontFamily:"MineCraft"}}>

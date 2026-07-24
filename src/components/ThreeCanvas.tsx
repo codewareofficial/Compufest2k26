@@ -5,6 +5,17 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Center, useGLTF, ContactShadows, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
 
+// Suppress Three.js deprecated THREE.Clock console warning from third-party library internals
+if (typeof window !== 'undefined') {
+  const origWarn = console.warn;
+  console.warn = (...args: any[]) => {
+    if (typeof args[0] === 'string' && args[0].includes('THREE.Clock: This module has been deprecated')) {
+      return;
+    }
+    origWarn.apply(console, args);
+  };
+}
+
 // 3D Model loader component
 function Model() {
   // Load model from public/model/model.glb
@@ -152,5 +163,7 @@ export default function ThreeCanvas() {
   );
 }
 
-// Pre-load the GLTF file in the background so it starts downloading as soon as the module imports
-useGLTF.preload('/model/model.glb');
+// Pre-load the GLTF file in the background so it starts downloading as soon as the module imports on client
+if (typeof window !== 'undefined') {
+  useGLTF.preload('/model/model.glb');
+}

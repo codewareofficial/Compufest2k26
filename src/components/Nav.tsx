@@ -9,7 +9,7 @@ const pixelFont = { fontFamily: 'var(--font-press-start-2p)' };
 const NAV_ITEMS = [
   { label: 'HOME', href: '/' },
   { label: 'ABOUT', href: '#about' },
-  { label: 'EVENTS', href: '/event' },
+  { label: 'EVENTS', href: '#events' },
   { label: 'TIMELINE', href: '#highlights' },
   { label: 'INSTAGRAM', href: 'https://www.instagram.com/compufest_2k26?igsh=MTF6dDN4aTdlaGhlMw==' },
   { label: 'COMITTEE', href: '/comiittee' },
@@ -107,10 +107,11 @@ function Nav() {
     return () => clearTimeout(timeout);
   }, [pathname]);
 
-  // Section links keep a plain "/#id" href for accessibility/middle-click/
-  // right-click-open-in-new-tab, but every normal left click is intercepted
-  // and handled manually below so the browser/Next never touch the hash.
-  const getHref = (href: string) => (href.startsWith('#') ? `/${href}` : href);
+  // Section links keep "#id" or "/#id" depending on route
+  const getHref = (href: string) => {
+    if (!href.startsWith('#')) return href;
+    return pathname === '/' ? href : `/${href}`;
+  };
 
   const handleSectionClick = (e: React.MouseEvent, href: string) => {
     if (!href.startsWith('#')) return;
@@ -126,7 +127,14 @@ function Nav() {
 
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 80;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = Math.max(0, elementPosition - navOffset);
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -139,14 +147,14 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-3">
-             <div className='h-12 w-12 scale-90 '>
-             <img className='h-full w-full object-cover' src="/logo.png" alt="" />
-        </div>
-            <div>
-              <h1 className="text-white  text-[10px] font-bold">CT's Techfest</h1>
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 md:gap-4 group">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 flex-shrink-0 flex items-center justify-center">
+              <img className="w-full h-full object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" src="/logo.png" alt="Compufest Logo" />
             </div>
-          </div>
+            <div>
+              <h1 className="text-white text-xs sm:text-sm md:text-base font-bold tracking-wider group-hover:text-green-400 transition-colors">Compufest 2k26</h1>
+            </div>
+          </Link>
 
           {/* desktop links */}
           <div className="hidden md:flex gap-6 text-white text-[8px] uppercase items-center">
@@ -165,9 +173,14 @@ function Nav() {
                 {item.label}
               </Link>
             ))}
-            <button className="bg-green-600 px-4 py-2 rounded-md hover:bg-green-500 transition-transform hover:scale-105 border-b-4 border-green-800">
+            <a
+              href="https://unstop.com/hackathons/coderush-20-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1723466"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-600 px-4 py-2 rounded-md hover:bg-green-500 transition-transform hover:scale-105 border-b-4 border-green-800 text-white text-center"
+            >
               REGISTER NOW →
-            </button>
+            </a>
           </div>
 
           {/* hamburger button, mobile only */}
@@ -223,12 +236,15 @@ function Nav() {
               {item.label}
             </Link>
           ))}
-          <button
+          <a
+            href="https://unstop.com/hackathons/coderush-20-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1723466"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="mt-4 bg-green-600 px-4 py-3 rounded-md hover:bg-green-500 transition-transform hover:scale-105 border-b-4 border-green-800 text-[9px]"
+            className="mt-4 bg-green-600 px-4 py-3 rounded-md hover:bg-green-500 transition-transform hover:scale-105 border-b-4 border-green-800 text-[9px] text-white text-center block"
           >
             REGISTER NOW →
-          </button>
+          </a>
         </div>
       </div>
     </>

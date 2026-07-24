@@ -18,8 +18,8 @@ const MISSIONS = [
     mode: "Offline",
     difficulty: "MAXIMUM THREAT",
     agents: "Team of 3-5",
-    reward: "₹70,000",
-    formLink: "", // no link provided for Hackathon (CodeRush) yet
+    reward: "₹1,00,000",
+    formLink: "https://unstop.com/hackathons/coderush-20-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1723466",
   },
   {
     area: "bc",
