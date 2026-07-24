@@ -53,7 +53,7 @@ export default function UseTimeline() {
       date: '06 August 2026',
       xp: 500,
       blockType: 'obsidian',
-      difficulty: 'Maximum Threat',
+      difficulty: 'Hard',
       description: 'Hack ML is an exciting challenge where participants build innovative solutions using Machine Learning. Learn, code, and create intelligent solutions!',
       prizePool: '₹3,000',
       imag:"https://i.pinimg.com/1200x/e2/4a/ea/e24aea50864d60e225d6c2c8c12805a9.jpg",
@@ -122,19 +122,19 @@ export default function UseTimeline() {
       {/* Header / Video Section */}
       <div className='h-40 flex w-full relative'>
         
-        <div className='h-40 w-96'>
+        <div className='h-40 w-full'>
           <img src="./23.png" className="object-cover h-full w-full"></img>
         </div>
 
-         <div className='h-40 w-96 '>
+         <div className='h-40 w-full '>
           <img src="./21.png" className="object-cover   h-full w-full"></img>
         </div>
          
-         <div className='h-40 w-96 '>
+         <div className='h-40 w-full '>
           <img src="./21.png" className="object-cover   h-full w-full"></img>
         </div>
           
-          <div className='h-40 w-96 '>
+          <div className='h-40 w-full '>
           <img src="./22.png" className="object-cover   h-full w-full"></img>
         </div> 
         

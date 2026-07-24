@@ -124,19 +124,19 @@ export default function Past() {
       {/* Header / Video Section */}
       <div className='h-40 flex w-full relative'>
         
-        <div className='h-40 w-96'>
+        <div className='h-40 w-full'>
           <img src="./31.png" className="object-cover h-full w-full"></img>
         </div>
 
-         <div className='h-40 w-96 '>
+         <div className='h-40 w-full '>
           <img src="/31.png" className="object-cover   h-full w-full"></img>
         </div>
          
-         <div className='h-40 w-96 '>
+         <div className='h-40 w-full '>
           <img src="./32.png" className="object-cover   h-full w-full"></img>
         </div>
           
-          <div className='h-40 w-96 '>
+          <div className='h-40 w-full '>
           <img src="./31.png" className="object-cover   h-full w-full"></img>
         </div> 
         

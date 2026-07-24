@@ -163,10 +163,7 @@ function TimelineNode({
               <span className="prize-label">PRIZE POOL</span>
               <span className="prize-value">{prizePool}</span>
             </div>
-            <button className="register-btn" onClick={handleRegisterClick}>
-              <span>Register</span>
-              <i className="coin-icon"></i>
-            </button>
+           
           </div>
         </div>
         <div className="card-shadow-glow"></div>

@@ -29,19 +29,19 @@ function EventLanding() {
       {/* Header / Video Section */}
       <div className='h-40 flex w-full relative'>
         
-        <div className='h-40 w-96'>
+        <div className='h-40 w-full'>
           <img src="./1.png" className="object-cover h-full w-full"></img>
         </div>
 
-         <div className='h-40 w-96 '>
+         <div className='h-40 w-full '>
           <img src="/4.png" className="object-cover   h-full w-full"></img>
         </div>
          
-         <div className='h-40 w-96 '>
+         <div className='h-40 w-full '>
           <img src="./2.png" className="object-cover   h-full w-full"></img>
         </div>
           
-          <div className='h-40 w-96 '>
+          <div className='h-40 w-full '>
           <img src="./3.png" className="object-cover   h-full w-full"></img>
         </div> 
         
