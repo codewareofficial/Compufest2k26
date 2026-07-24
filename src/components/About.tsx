@@ -1,5 +1,11 @@
+"use client";
+
 import React from 'react'
-import ThreeCanvas from './ThreeCanvas'
+import dynamic from 'next/dynamic'
+
+const ThreeCanvas = dynamic(() => import('./ThreeCanvas'), {
+  ssr: false,
+});
 
 function About() {
   return (
@@ -16,23 +22,25 @@ function About() {
 
         <div className='p-3 w-full max-w-xs h-auto md:h-90 md:w-90 bg-[#401D70] border-2 rounded-2xl bg-accent-foreground md:ml-20 md:mt-30'>
           <div>
-            <p className='text-base md:text-xl text-white'>
+            <div className='text-base md:text-xl text-white'>
               <span className='text-2xl md:text-3xl'> What is Compufest ?</span>
               <br />
-              Compufest is YCCE's Computer Technology Department annual tech event with competitions, workshops, coding, and gaming, fostering innovation and collaboration.
-            </p>
+              <p className='mt-2'>
+                Compufest is YCCE's Computer Technology Department annual tech event with competitions, workshops, coding, and gaming, fostering innovation and collaboration.
+              </p>
+            </div>
           </div>
         </div>
 
         <div className='p-3 w-full max-w-xs h-auto md:h-90 md:w-90 bg-[#401D70] border-2 rounded-2xl md:absolute md:right-20 md:top-10'>
           <div>
-            <p className='text-sm md:text-md text-white'>
-              <span className='text-2xl md:text-3xl'> About CT Dpartment ?</span>
+            <div className='text-sm md:text-md text-white'>
+              <span className='text-2xl md:text-3xl'> About CT Department ?</span>
               <br />
-              <p>
-              The Department of Computer Technology at YCCE, established in 1985, is accredited and recognized for excellence in education and research. With a focus on AI, IoT, ML, and more, it offers industry-relevant programs and advanced research opportunities.
+              <p className='mt-2'>
+                The Department of Computer Technology at YCCE, established in 1985, is accredited and recognized for excellence in education and research. With a focus on AI, IoT, ML, and more, it offers industry-relevant programs and advanced research opportunities.
               </p>
-            </p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,10 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
-import PixelSnow from './PixelSnow';
+import dynamic from 'next/dynamic';
+
+const PixelSnow = dynamic(() => import('./PixelSnow'), {
+  ssr: false,
+});
 
 const HeroSection = ({ imageUrl = "/image.png" }) => {
   // Styles applied using the provided CSS variable
@@ -60,7 +64,15 @@ const HeroSection = ({ imageUrl = "/image.png" }) => {
             <span>👥 FOR INNOVATORS</span>
           </div>
 
-          <button className="mt-2 bg-green-500 mb-2 hover:bg-green-400 text-[#0a1420] px-8 py-4 rounded-lg font-bold shadow-[4px_4px_0px_#064e3b] transition-all hover:-translate-y-1 text-xs">
+          <button 
+            onClick={() => {
+              const el = document.getElementById('events');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="mt-2 bg-green-500 mb-2 hover:bg-green-400 text-[#0a1420] px-8 py-4 rounded-lg font-bold shadow-[4px_4px_0px_#064e3b] transition-all hover:-translate-y-1 text-xs cursor-pointer"
+          >
             EXPLORE EVENTS →
           </button>
         </div>

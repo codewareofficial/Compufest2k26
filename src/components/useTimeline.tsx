@@ -11,7 +11,7 @@ export default function UseTimeline() {
       blockType: 'dirt',
       difficulty: 'Easy',
       description: 'Code Rush is a 24-hour hackathon to build innovative solutions and solve real-world problems. Collaborate, code, and innovate under pressure!',
-      prizePool: '₹70,000',
+      prizePool: '₹1,00,000',
       imag: "https://i.pinimg.com/736x/6e/61/a0/6e61a09f6e8c673ad1a1e0c2781922b1.jpg",
     },
     { 
