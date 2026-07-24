@@ -26,7 +26,7 @@ const MISSIONS = [
     variant: "wide",
     category: "Competition",
     group: "Sports",
-    title: "Box Cricket",
+    title: "Long Cricket",
     subtitle: "Turf Battle",
     description: "Short-format cricket matches packed with excitement and energy.",
     icon: "🏏",
