@@ -30,7 +30,7 @@ function Page() {
           style={{fontFamily:"Minecraft"}}
         >
         
-          Core Committee
+          Core Comittee
         </h2>
         <div className="flex flex-wrap justify-center gap-4 p-6">
           {images.map((img) => (

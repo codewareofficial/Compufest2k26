@@ -49,6 +49,7 @@ const MISSIONS = [
     difficulty: "MAXIMUM THREAT",
     agents: "Team of 3-5",
     reward: "₹70,000",
+    formLink: "", // no link provided for Hackathon (CodeRush) yet
   },
   {
     area: "bc",
@@ -64,6 +65,7 @@ const MISSIONS = [
     difficulty: "Medium",
     agents: "6/team + 2 subs",
     reward: "₹5000",
+    formLink: "https://forms.gle/HcRPxVj5PKsxsmix9",
   },
   {
     area: "aw",
@@ -78,6 +80,7 @@ const MISSIONS = [
     difficulty: "Medium",
     agents: "Individual",
     reward: "₹4000",
+    formLink: "https://forms.gle/NdV79yRLNjcgRhX2A",
   },
   {
     area: "bg",
@@ -92,6 +95,7 @@ const MISSIONS = [
     difficulty: "Easy",
     agents: "Team of 4",
     reward: "₹2500",
+    formLink: "https://forms.gle/6MjM5JvksHf2hoVdA",
   },
   {
     area: "vs",
@@ -106,6 +110,7 @@ const MISSIONS = [
     difficulty: "Medium",
     agents: "Team of 2",
     reward: "₹2000",
+    formLink: "https://forms.gle/RpwdEMgFRFjpA2fr7",
   },
   {
     area: "vi",
@@ -120,6 +125,7 @@ const MISSIONS = [
     difficulty: "Medium",
     agents: "Team of 2",
     reward: "₹3000",
+    formLink: "https://forms.gle/wnM6PjNczkuyiVjH7",
   },
   {
     area: "pa",
@@ -134,6 +140,7 @@ const MISSIONS = [
     difficulty: "Easy",
     agents: "Individual",
     reward: "₹5000",
+    formLink: "https://forms.gle/SK1acedBVdL92TNq5",
   },
   {
     area: "qz",
@@ -149,6 +156,7 @@ const MISSIONS = [
     difficulty: "Easy",
     agents: "Team of 2-3",
     reward: "₹4500",
+    formLink: "https://forms.gle/S3zABit4vWWVP6v99",
   },
   {
     area: "vx",
@@ -163,6 +171,7 @@ const MISSIONS = [
     difficulty: "Medium",
     agents: "Team of 2",
     reward: "₹3500",
+    formLink: "https://forms.gle/LZ9T8FoB2h32cRPd6",
   },
 ];
 
@@ -296,6 +305,7 @@ interface Mission {
   difficulty: string;
   agents?: string;
   reward: string;
+  formLink :string;
 }
 
 interface MissionCellProps {
@@ -338,8 +348,10 @@ function MissionCell({ m }: MissionCellProps) {
           <Stat label="Agents" value={m.agents} />
           <Stat label="Reward" value={m.reward} />
         </div>
-
+     
+     <a href={m.formLink}>
         <MissionButton />
+     </a>
       </div>
     );
   }
@@ -364,7 +376,9 @@ function MissionCell({ m }: MissionCellProps) {
           <Stat label="Difficulty" value={m.difficulty} />
           <Stat label="Reward" value={m.reward} />
         </div>
+        <a href={m.formLink}>
         <MissionButton small />
+        </a>
       </div>
     );
   }
@@ -385,7 +399,9 @@ function MissionCell({ m }: MissionCellProps) {
         <Stat label="Difficulty" value={m.difficulty} />
         <Stat label="Reward" value={m.reward} />
       </div>
+      <a href={m.formLink}>
       <MissionButton small />
+      </a>
     </div>
   );
 }
