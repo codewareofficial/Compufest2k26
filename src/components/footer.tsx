@@ -25,7 +25,7 @@ function Footer() {
          Compufest 2K26
         </p>
           <p className="font-['Minecraft'] mt-2 text-sm text-center tracking-widest text-[#a3a3a3]">
-           Website Created By Muchkundraje thote and Compufest Technical Team 
+           Website Created By  <a href="https://github.com/MUCHKUNDRAJE" className=' text-white' >  Muchkundraje thote</a> with <span className='text-white'> Compufest Technical Team</span> 
         </p>
        
       </div>
