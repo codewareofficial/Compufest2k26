@@ -29,15 +29,23 @@ const PAST_EVENTS = [
   { img: '/2k25 memories/26.webp' },
 ];
 
-/* Marquee track needs exactly two copies back-to-back so a -50%
-   translate is precisely one full loop, with no seam. */
-const ROW_A = [...PAST_EVENTS, ...PAST_EVENTS];
-const ROW_B = [...PAST_EVENTS].reverse().concat([...PAST_EVENTS].reverse());
+/* Exactly two copies back-to-back so translate(-50%) is one seamless
+   loop. Only a handful of leading cards are eager-loaded; everything
+   else is lazy, so we're not forcing 46 decodes up front. */
+const ROW_ITEMS = [...PAST_EVENTS, ...PAST_EVENTS];
 
 /* ─── Single card ─────────────────────────────────────────────────────
    Explicit width/height so the browser doesn't reflow while images
-   stream in; no hover-scale/blur so it stays light on every device.  */
-function EventCard({ ev }: { ev: (typeof PAST_EVENTS)[0] }) {
+   stream in. loading/decoding hints keep image work off the critical
+   path so the compositor thread (which drives the animation) never
+   stalls waiting on the main thread.                                */
+function EventCard({
+  ev,
+  eager,
+}: {
+  ev: (typeof PAST_EVENTS)[0];
+  eager?: boolean;
+}) {
   return (
     <div
       className="relative flex-shrink-0 w-56 h-36 md:w-72 md:h-44 rounded-xl overflow-hidden select-none"
@@ -48,7 +56,7 @@ function EventCard({ ev }: { ev: (typeof PAST_EVENTS)[0] }) {
         alt=""
         width={288}
         height={176}
-        loading="lazy"
+        loading={eager ? 'eager' : 'lazy'}
         decoding="async"
         className="w-full h-full object-cover"
         draggable={false}
@@ -58,19 +66,20 @@ function EventCard({ ev }: { ev: (typeof PAST_EVENTS)[0] }) {
   );
 }
 
-/* ─── Pure-CSS marquee ─────────────────────────────────────────────────
-   Same track works for mobile and desktop — no wheel events, no JS
-   physics, just an infinite linear CSS animation. Pauses via
-   IntersectionObserver when scrolled out of view so it doesn't burn
-   battery in the background.                                        */
-function MarqueeTrack({
-  items,
+/* ─── GPU-accelerated marquee row ────────────────────────────────────
+   Pure CSS transform animation (translate3d), which runs on the
+   compositor thread — not the layout/paint thread — so it stays
+   smooth regardless of how many images are on screen. This is the
+   thing that was actually causing the lag with <marquee>: browsers
+   implement it via repeated reflows, which gets expensive fast at
+   this image count. `will-change: transform` hints the browser to
+   promote the track to its own GPU layer up front.                  */
+function MarqueeRow({
   reverse,
-  duration,
+  duration = 40,
 }: {
-  items: (typeof PAST_EVENTS)[0][];
   reverse?: boolean;
-  duration: number; // seconds for one full loop
+  duration?: number;
 }) {
   const wrapRef = React.useRef<HTMLDivElement>(null);
   const trackRef = React.useRef<HTMLDivElement>(null);
@@ -80,6 +89,7 @@ function MarqueeTrack({
     const track = trackRef.current;
     if (!wrap || !track) return;
 
+    // Pause when off-screen so it doesn't burn GPU/battery in the background.
     const io = new IntersectionObserver(
       ([entry]) => {
         track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
@@ -99,10 +109,11 @@ function MarqueeTrack({
           animation: `compufest-marquee ${duration}s linear infinite`,
           animationDirection: reverse ? 'reverse' : 'normal',
           willChange: 'transform',
+          backfaceVisibility: 'hidden',
         }}
       >
-        {items.map((ev, i) => (
-          <EventCard key={i} ev={ev} />
+        {ROW_ITEMS.map((ev, i) => (
+          <EventCard key={i} ev={ev} eager={i < 6} />
         ))}
       </div>
     </div>
@@ -113,17 +124,22 @@ function MarqueeTrack({
 export default function Past() {
   return (
     <>
-          <style>{`
+      <style>{`
         @keyframes marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(-50%, 0, 0); }
         }
         .animate-slow-marquee { animation: marquee 20s linear infinite; }
+
+        @keyframes compufest-marquee {
+          from { transform: translate3d(0, 0, 0); }
+          to   { transform: translate3d(-50%, 0, 0); }
+        }
       `}</style>
-      
+
       {/* Header / Video Section */}
       <div className='h-40 flex w-full relative'>
-        
+
         <div className='h-40 w-full'>
           <img src="./31.png" className="object-cover h-full w-full"></img>
         </div>
@@ -131,45 +147,14 @@ export default function Past() {
          <div className='h-40 w-full '>
           <img src="/31.png" className="object-cover   h-full w-full"></img>
         </div>
-         
+
          <div className='h-40 w-full '>
           <img src="./32.png" className="object-cover   h-full w-full"></img>
         </div>
-          
+
           <div className='h-40 w-full '>
           <img src="./31.png" className="object-cover   h-full w-full"></img>
-        </div> 
-        
-        
-          {/* <SpriteSheetAnimator
-            src="\spritesheet.png"
-            frameWidth={35}
-            frameHeight={56}
-            frameCount={8}
-            columns={8}
-            fps={1}
-            loop={true}
-            scale={2}
-            frameOffsets={playerOffsets}
-            className='mt-10 absolute '
-            onComplete={undefined}/> */}
-            
-    
-            {/* <div className='h-40 w-72'>
-          <img src="./1.png" className="object-cover h-full w-full"></img>
         </div>
-            <div className='h-40 w-72'>
-          <img src="./1.png" className="object-cover h-full w-full"></img>
-        </div>
-           <div className='h-40 w-72'>
-          <img src="./1.png" className="object-cover h-full w-full"></img>
-        </div>
-           <div className='h-40 w-72'>
-          <img src="./1.png" className="object-cover h-full w-full"></img>
-        </div>
-             <div className='h-40 w-72'>
-          <img src="./1.png" className="object-cover h-full w-full"></img>
-        </div> */}
       </div>
 
       {/* Marquee Section */}
@@ -183,6 +168,7 @@ export default function Past() {
           ))}
         </div>
       </div>
+
     <section
       className="w-full py-20 overflow-hidden relative"
       style={{
@@ -191,13 +177,6 @@ export default function Past() {
         borderBottom: '3px solid rgba(168,85,247,0.35)',
       }}
     >
-      <style>{`
-        @keyframes compufest-marquee {
-          from { transform: translate3d(0, 0, 0); }
-          to   { transform: translate3d(-50%, 0, 0); }
-        }
-      `}</style>
-
       {/* Ambient glow blobs */}
       <div
         className="pointer-events-none absolute -top-20 left-1/4 w-96 h-96 rounded-full opacity-20"
@@ -227,12 +206,12 @@ export default function Past() {
 
       {/* Row 1 — scrolls left to right */}
       <div className="mb-5">
-        <MarqueeTrack items={ROW_A} duration={100} />
+        <MarqueeRow duration={45} />
       </div>
 
       {/* Row 2 — scrolls right to left */}
       <div>
-        <MarqueeTrack items={ROW_B} reverse duration={100} />
+        <MarqueeRow reverse duration={45} />
       </div>
     </section>
     </>
