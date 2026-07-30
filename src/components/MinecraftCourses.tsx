@@ -39,7 +39,7 @@ const MISSIONS = [
     variant: "hero",
     category: "Hackathon",
     group: "Technical",
-    title: "CodeRush",
+    title: "CodeRush 2.0",
     subtitle: "24-Hour Hackathon",
     description:
       "50 Teams. 24 Hours. Dive into a full-day innovation sprint where ideas turn into impactful tech solutions. Build, debug, and deliver under pressure.",
@@ -47,7 +47,7 @@ const MISSIONS = [
     fee: "₹2000",
     mode: "Offline",
     difficulty: "MAXIMUM THREAT",
-    agents: "Team of 3-5",
+    agents: "Team of 5",
     reward: "₹1,00,000",
     formLink: "https://unstop.com/hackathons/coderush-20-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1723466",
   },
