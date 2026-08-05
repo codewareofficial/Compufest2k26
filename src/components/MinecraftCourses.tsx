@@ -49,7 +49,7 @@ const MISSIONS = [
     difficulty: "MAXIMUM THREAT",
     agents: "Team of 5",
     reward: "₹1,00,000",
-    formLink: "https://unstop.com/hackathons/coderush-20-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1723466",
+    // formLink: "https://unstop.com/hackathons/coderush-20-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1723466",
   },
   {
     area: "bc",
@@ -65,7 +65,7 @@ const MISSIONS = [
     difficulty: "Medium",
     agents: "6/team + 2 subs",
     reward: "₹5000",
-    formLink: "https://forms.gle/HcRPxVj5PKsxsmix9",
+    // formLink: "https://forms.gle/HcRPxVj5PKsxsmix9",
   },
   {
     area: "aw",
@@ -288,6 +288,37 @@ function MissionButton({ small }: MissionButtonProps) {
     >
       ACCEPT MISSION
     </button>
+ );
+}
+
+
+function MissionButton2({ small }: MissionButtonProps) {
+  const [down, setDown] = useState(false);
+  return (
+    <button
+      onMouseDown={() => setDown(true)}
+      onMouseUp={() => setDown(false)}
+      onMouseLeave={() => setDown(false)}
+      style={{
+        fontFamily: pixelFont,
+        fontSize: small ? "9px" : "11px",
+        color: CREAM,
+        textShadow: "1.5px 1.5px 0 rgba(0,0,0,0.4)",
+        background: "#3A2A1C",
+        border: `3px solid ${GREEN_DARK}`,
+        padding: small ? "9px 10px" : "12px 14px",
+        cursor: "pointer",
+        boxShadow: down
+          ? "inset 2px 2px 0 0 rgba(0,0,0,0.35)"
+          : "inset 2px 2px 0 0 rgba(255,255,255,0.3), inset -3px -3px 0 0 rgba(0,0,0,0.3)",
+        transform: down ? "translateY(1px)" : "none",
+        letterSpacing: "1px",
+        width: small ? "auto" : "100%",
+        whiteSpace: "nowrap",
+      }}
+    >
+   Registration Closed 
+    </button>
   );
 }
 
@@ -350,7 +381,9 @@ function MissionCell({ m }: MissionCellProps) {
         </div>
      
      <a href={m.formLink}>
-        <MissionButton />
+      {
+          m.formLink ?  <MissionButton small />: <MissionButton2 small />
+         }
      </a>
       </div>
     );
@@ -377,7 +410,9 @@ function MissionCell({ m }: MissionCellProps) {
           <Stat label="Reward" value={m.reward} />
         </div>
         <a href={m.formLink}>
-        <MissionButton small />
+      {
+          m.formLink ?  <MissionButton small />: <MissionButton2 small />
+         }
         </a>
       </div>
     );
@@ -400,7 +435,10 @@ function MissionCell({ m }: MissionCellProps) {
         <Stat label="Reward" value={m.reward} />
       </div>
       <a href={m.formLink}>
-      <MissionButton small />
+        {
+          m.formLink ?  <MissionButton small />: <MissionButton2 small />
+         }
+    
       </a>
     </div>
   );
