@@ -336,7 +336,7 @@ interface Mission {
   difficulty: string;
   agents?: string;
   reward: string;
-  formLink :string;
+  formLink?: string;
 }
 
 interface MissionCellProps {
@@ -382,7 +382,7 @@ function MissionCell({ m }: MissionCellProps) {
      
      <a href={m.formLink}>
       {
-          m.formLink ?  <MissionButton small />: <MissionButton2 small />
+          m.formLink ?  <MissionButton small />: <MissionButton2  />
          }
      </a>
       </div>
